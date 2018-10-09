@@ -3,7 +3,7 @@
 
 ## Installation
 ```bash
-npm install proto2ts --global
+npm install p2ts --global
 ```
 
 ## Usage

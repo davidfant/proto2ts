@@ -52,6 +52,7 @@ const messages = messagesStr.map((message) => {
 const protoTypeToTypescriptType = (type) => {
 	if (['float', 'int32'].includes(type)) return 'number';
 	if (['string'].includes(type)) return 'string';
+	if (['bool'].includes(type)) return 'boolean';
 	return type;
 }
 

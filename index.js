@@ -1,12 +1,16 @@
 
 class Proto2TS {
 
+	/*
+		Convert a proto string to a Typescript string. If the optional
+		namespaceName argument is supplied, the typescript interfaces
+		will be wrapped in a namespace.
+	*/
 	static convert(protoString, namespaceName = null) {
 		// 1. replace line breaks since regex matching is easier without it.
 		const trimmedProtoString = protoString.replace(/(?:\r|\n|\t)/g, ' ');
 
-
-		// 2. match message blocks
+		// 2. find proto message blocks (see how it works in Proto2TS.messageRegex)
 		const messageBlocks = trimmedProtoString.match(this.messageRegex());
 
 		// 3. parse message block strings to messages
@@ -21,11 +25,11 @@ class Proto2TS {
 		// 4. if we have a namespace, wrap everything
 		if (!!namespaceName) {
 			serializedMessages = [
-				``,
+				'',
 				`export namespace ${namespaceName} {`,
 					...serializedMessages,
-				`}`,
-				``,
+				'}',
+				'',
 			];
 		}
 
